@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>DQX鍛冶職人ダメージチェッカー</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <% if current_page.data.itemData then %>
+	 <script type="text/javascript" src="../javascripts/canvasjs.min.js"></script>
+   <script type="text/javascript" src="../javascripts/damageRange.js"></script>
+   <script type="text/javascript" src="../javascripts/chartFunctions.js"></script>
+	 <script type="text/javascript" src="../javascripts/script<%= current_page.data.Type %>.js"></script>
+  <% end %>
+  <% case current_page.data.Type when "Index" then %>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+  <% else %>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+  <% end %>
+  <% if current_page.data.itemData then %>
+    <script type="text/javascript">
+      var itemData = <%= current_page.data.itemData %>
+  	</script>
+  <% end %>
+  <style>
+    <% if (current_page.data.Type == "Index") then %>
+      div.blockArea{
+        width: 290px;
+        float: left;
+        border-width: 1px;
+        border-style: dashed;
+        padding: 3px;
+      }
+      #helpLink{
+        float: none;
+      }
+    <% elsif (current_page.data.Type == "Arm") or (current_page.data.Type == "Help") then %>
+      div.blockArea{
+        width: 590px;
+        /*float: left;*/
+        height: 150px;
+        border-width: 1px;
+        border-style: dashed;
+      }
+    <% else %>
+    div.blockArea{
+      width: 590px;
+      float: left;
+      height: 150px;
+      border-width: 1px;
+      border-style: dashed;
+    }
+    <% end %>
+  </style>
+</head>
+
+  <body>
+    <%= partial "header" %>
+    <%= yield %>
+    <%= partial "footer" %>
+  </body>
+</html>
