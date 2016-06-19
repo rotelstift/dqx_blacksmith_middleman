@@ -59,3 +59,20 @@ footer{
   width: 10em;
   float: right;
 }
+
+div.setContainer{
+  width: 250px;
+  float: left;
+}
+
+div.setContainer h3{
+  margin: 0px;
+}
+
+div.levelContainer{
+  margin-left: 50px;
+}
+
+h2{
+  clear: left;
+}
