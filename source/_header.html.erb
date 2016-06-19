@@ -1,10 +1,10 @@
 <header>
 		<% case current_page.data.Type when "Index" then %>
-		<h1><a href="./index.html">DQX鍛冶職人ダメージチェッカー</a></h1>
-		<p id="helpLink"><a href="./help/index.html">使い方</a></p>
+		<h1><a href="./">DQX鍛冶職人ダメージチェッカー</a></h1>
+		<p id="helpLink"><a href="./help/">使い方</a></p>
 		<% else %>
-		<h1><a href="../index.html">DQX鍛冶職人ダメージチェッカー</a></h1>
-		<p id="helpLink"><a href="../help/index.html">使い方</a></p>
+		<h1><a href="../">DQX鍛冶職人ダメージチェッカー</a></h1>
+		<p id="helpLink"><a href="../help/">使い方</a></p>
 		<% end %>
     <% if current_page.data.itemName then %>
       <h2><%= current_page.data.itemName %></h2>
