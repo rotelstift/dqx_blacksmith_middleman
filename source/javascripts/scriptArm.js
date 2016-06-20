@@ -28,11 +28,11 @@ window.onload = function () {
           break;
 
           case 38: // Key[↑]
-          	moveFocus(inputAry, document.activeElement.id, "-2");
+          	moveFocus(inputAry, document.activeElement.id, "-1");
           break;
 
           case 40: // Key[↓]
-          	moveFocus(inputAry, document.activeElement.id, "+2");
+          	moveFocus(inputAry, document.activeElement.id, "+1");
           break;
 
 					default:
