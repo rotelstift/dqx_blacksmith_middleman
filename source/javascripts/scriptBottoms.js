@@ -9,10 +9,6 @@ window.onload = function () {
 	var chartG = renderChart("chartG", "chartContainerG", itemData[7]);
 	var chartH = renderChart("chartH", "chartContainerH", itemData[8]);
 
-	// ダメージフォームにフォーカスが当たったら中身を全選択する
-	$(".formContainer > form > input").focus(function(){
-	  $(this).select();
-	})
 
 	// リターンキーを押した時の挙動
 	$("form").on("keypress", function (e) {
@@ -30,6 +26,43 @@ window.onload = function () {
 			refreshChart(chartG, "#damageG", itemData[7]);
 			refreshChart(chartH, "#damageH", itemData[8]);
 			return false;
+		}
+	});
+
+	// ダメージフォームにフォーカスが当たったら中身を全選択する
+	$(".formContainer > form > input").focusin(function(){
+		$(this).select();
+	})
+
+
+	// shiftKey + 矢印キーを押したらダメージフォームのフォーカスを移動する
+	var inputAry = $(".formContainer > form > input").serializeArray();
+
+
+  $('html').keydown(function(e){
+		if(event.shiftKey){
+      switch(e.which){
+          case 39: // Key[→]
+
+          	moveFocus(inputAry, document.activeElement.id, "+1");
+
+          break;
+
+          case 37: // Key[←]
+          	moveFocus(inputAry, document.activeElement.id, "-1");
+          break;
+
+          case 38: // Key[↑]
+          	moveFocus(inputAry, document.activeElement.id, "-2");
+          break;
+
+          case 40: // Key[↓]
+          	moveFocus(inputAry, document.activeElement.id, "+2");
+          break;
+
+					default:
+					break;
+      }
 		}
 	});
 

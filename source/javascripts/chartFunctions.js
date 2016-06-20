@@ -81,3 +81,70 @@ function refreshChart(chartName, damageID, itemDataAry){
   chartName.options.axisY.stripLines[1].endValue = itemDataAry[1] - damageRange[3][1];
   chartName.render();
 }
+
+function moveFocus(objAry, now, step){
+
+  //alert(step);
+  switch(step){
+      case "+1":
+      //alert(step);
+
+      for(i = 0; i < objAry.length; i++){
+        if (objAry[i].name == now) {
+          if (i+1 >= objAry.length){
+            $("#" + objAry[0].name).focus();
+            break;
+          } else {
+            $("#" + objAry[i+1].name).focus();
+            break;
+          }
+        }
+      }
+      break;
+
+      case "-1":
+
+      for(i = 0; i < objAry.length; i++){
+        if (objAry[i].name == now) {
+          if (i-1 < 0){
+            $("#" + objAry[objAry.length - 1].name).focus();
+            break;
+          } else {
+            $("#" + objAry[i-1].name).focus();
+            break;
+          }
+        }
+      }
+      break;
+
+      case "+2":
+
+      for(i = 0; i < objAry.length; i++){
+        if (objAry[i].name == now) {
+          if (i+2 >= objAry.length){
+            $("#" + objAry[i+2 - objAry.length].name).focus();
+            break;
+          } else {
+            $("#" + objAry[i+2].name).focus();
+            break;
+          }
+        }
+      }
+      break;
+
+      case "-2":
+
+      for(i = 0; i < objAry.length; i++){
+        if (objAry[i].name == now) {
+          if (i-2 < 0){
+            $("#" + objAry[i-2 + objAry.length].name).focus();
+            break;
+          } else {
+            $("#" + objAry[i-2].name).focus();
+            break;
+          }
+        }
+      }
+      break;
+    }
+}
