@@ -7,9 +7,18 @@ window.onload = function () {
 	var chartE = renderChart("chartE", "chartContainerE", itemData[5]);
 	var chartF = renderChart("chartF", "chartContainerF", itemData[6]);
 
+	// ダメージフォームにフォーカスが当たったら中身を全選択する
+	$(".formContainer > form > input").focus(function(){
+	  $(this).select();
+	})
+
 	// リターンキーを押した時の挙動
 	$("form").on("keypress", function (e) {
 		if (e.which === 13) {
+			// 温度を50度下げる
+			$('#temperature').val($('#temperature').val() - 50);
+			$("#slider").slider("value", $('#temperature').val());
+			// チャートをリフレッシュする
 			refreshChart(chartA, "#damageA", itemData[1]);
 			refreshChart(chartB, "#damageB", itemData[2]);
 			refreshChart(chartC, "#damageC", itemData[3]);
@@ -36,6 +45,15 @@ window.onload = function () {
 				refreshChart(chartE, "#damageE", itemData[5]);
 				refreshChart(chartF, "#damageF", itemData[6]);
 	    },
+			change: function(e, ui) {
+				$('#temperature').val(ui.value);
+				refreshChart(chartA, "#damageA", itemData[1]);
+				refreshChart(chartB, "#damageB", itemData[2]);
+				refreshChart(chartC, "#damageC", itemData[3]);
+				refreshChart(chartD, "#damageD", itemData[4]);
+				refreshChart(chartE, "#damageE", itemData[5]);
+				refreshChart(chartF, "#damageF", itemData[6]);
+			},
 			create: function(e, ui) {
 	      $('#temperature').val($(this).slider('option', 'value'));
 	    }
