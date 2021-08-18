@@ -1,6 +1,9 @@
 window.onload = function () {
 	// チャートの初期化
 	var chartA = renderChart("chartA", "chartContainerA", itemData[1]);
+	var chartB = renderChart("chartB", "chartContainerB", itemData[2]);
+	var chartC = renderChart("chartC", "chartContainerC", itemData[3]);
+	var chartD = renderChart("chartD", "chartContainerD", itemData[4]);
 
 	// ダメージフォームにフォーカスが当たったら中身を全選択する
 	$(".formContainer > form > input").focus(function(){
@@ -9,7 +12,6 @@ window.onload = function () {
 
 	// shiftKey + 矢印キーを押したらダメージフォームのフォーカスを移動する
 	var inputAry = $(".formContainer > form > input").serializeArray();
-
 
 	$('html').keydown(function(e){
 		if(event.shiftKey){
@@ -46,6 +48,9 @@ window.onload = function () {
 			$("#slider").slider("value", $('#temperature').val());
 			// チャートをリフレッシュする
 			refreshChart(chartA, "#damageA", itemData[1]);
+			refreshChart(chartB, "#damageB", itemData[2]);
+			refreshChart(chartC, "#damageC", itemData[3]);
+			refreshChart(chartD, "#damageD", itemData[4]);
 			return false;
 		}
 	});
@@ -60,10 +65,16 @@ window.onload = function () {
 			slide: function(e, ui) {
 	      $('#temperature').val(ui.value);
 				refreshChart(chartA, "#damageA", itemData[1]);
+				refreshChart(chartB, "#damageB", itemData[2]);
+				refreshChart(chartC, "#damageC", itemData[3]);
+				refreshChart(chartD, "#damageD", itemData[4]);
 	    },
 			change: function(e, ui) {
 				$('#temperature').val(ui.value);
 				refreshChart(chartA, "#damageA", itemData[1]);
+				refreshChart(chartB, "#damageB", itemData[2]);
+				refreshChart(chartC, "#damageC", itemData[3]);
+				refreshChart(chartD, "#damageD", itemData[4]);
 			},
 			create: function(e, ui) {
 	      $('#temperature').val($(this).slider('option', 'value'));
@@ -74,6 +85,15 @@ window.onload = function () {
 	// フォームの値が変化した時の挙動
 	$("#damageA").change(function(){
 		refreshChart(chartA, "#damageA", itemData[1]);
+	});
+	$("#damageB").change(function(){
+		refreshChart(chartB, "#damageB", itemData[2]);
+	});
+	$("#damageC").change(function(){
+		refreshChart(chartC, "#damageC", itemData[3]);
+	});
+	$("#damageD").change(function(){
+		refreshChart(chartD, "#damageD", itemData[4]);
 	});
 
 }

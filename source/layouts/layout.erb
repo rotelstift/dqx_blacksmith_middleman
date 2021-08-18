@@ -38,7 +38,7 @@
       #helpLink{
         float: none;
       }
-    <% elsif (current_page.data.Type == "Arm") or (current_page.data.Type == "Help") then %>
+    <% elsif (current_page.data.Type == "Arm") then %>
       div.blockArea{
         width: 590px;
         /*float: left;*/
@@ -60,7 +60,7 @@
 
   <body>
     <%= partial "header" %>
-    <%= yield %>
+  	<%= yield %>
     <%= partial "footer" %>
   </body>
 </html>

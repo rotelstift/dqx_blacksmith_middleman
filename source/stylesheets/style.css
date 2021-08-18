@@ -13,7 +13,7 @@ div.formContainer{
   background: #EFEFEF;
 }
 
-form{
+.formContainer form{
   position: relative;
   top: 30%;
 }
@@ -22,6 +22,10 @@ input{
   margin-left: 7px;
   width: 80px;
   font-size: xx-large;
+}
+
+form#resetForm input{
+  font-size: medium;
 }
 
 label{
@@ -40,6 +44,11 @@ form#sliderForm{
   display: block;
 }
 
+form#resetForm{
+  width: 100px;
+  float: right;
+}
+
 div#slider{
   margin-left: 150px;
   margin-top: 15px;
@@ -56,8 +65,9 @@ footer{
   clear: left;
 }
 #helpLink{
-  width: 10em;
+  width: 20em;
   float: right;
+  text-align: right;
 }
 
 div.setContainer{
@@ -70,6 +80,15 @@ div.setContainer h3{
 }
 
 div.levelContainer{
+  margin-left: 50px;
+}
+
+div.helpContainer{
+  clear: left;
+  padding: 30px;
+}
+
+div.helpContainer p{
   margin-left: 50px;
 }
 

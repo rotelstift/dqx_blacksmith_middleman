@@ -18,14 +18,16 @@ function renderChart(chartName, chartContainerID, itemDataAry) {
           opacity: .4
         },
         { //絶対大丈夫だよゾーン
-          startValue: itemDataAry[0] - damageRange[3][0],
-          endValue: itemDataAry[1] - damageRange[3][1],
-          opacity: .8
+          startValue: itemDataAry[0] - damageRange[3][0], //120 - 8 = 112
+          endValue: itemDataAry[1] - damageRange[3][1], //124-18 = 106
+          //opacity: .8 // x ? y : z
+          opacity: (itemDataAry[0] - damageRange[3][0] > itemDataAry[1] - damageRange[3][1]) ? .0 : .8
         },
         { //成功ゾーン
           startValue: itemDataAry[0],
           endValue: itemDataAry[1],
           opacity: .2,
+          color: "green"
         }
     ],
     },
@@ -77,8 +79,16 @@ function refreshChart(chartName, damageID, itemDataAry){
   }
   chartName.options.axisY.stripLines[0].startValue = itemDataAry[0] - damageRange[3][1];
   chartName.options.axisY.stripLines[0].endValue = itemDataAry[1] - damageRange[3][0];
-  chartName.options.axisY.stripLines[1].startValue = itemDataAry[0] - damageRange[3][0];
-  chartName.options.axisY.stripLines[1].endValue = itemDataAry[1] - damageRange[3][1];
+
+  if (itemDataAry[0] - damageRange[3][0] < itemDataAry[1] - damageRange[3][1]){
+    chartName.options.axisY.stripLines[1].startValue = itemDataAry[0] - damageRange[3][0];
+    chartName.options.axisY.stripLines[1].endValue = itemDataAry[1] - damageRange[3][1];
+    chartName.options.axisY.stripLines[1].opacity = .8;
+  } else {
+    chartName.options.axisY.stripLines[1].opacity = .0;
+  }
+
+
   chartName.render();
 }
 
@@ -95,7 +105,7 @@ function moveFocus(objAry, now, step){
             $("#" + objAry[0].name).focus();
             break;
           } else {
-            $("#" + objAry[i+1].name).focus();
+            $("#" + objAry[i+1].name).focus(); //$("input")[i+1].focus(); っていけるかな？
             break;
           }
         }
