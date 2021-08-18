@@ -11,7 +11,6 @@ page '/*.txt', layout: false
 
 # 自己拡張設定
 set :relative_links, true
-set :build_dir, '../dqx_blacksmith'
 
 # With alternative layout
 # page "/path/to/file.html", layout: :otherlayout
