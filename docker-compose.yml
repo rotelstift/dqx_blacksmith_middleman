@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  middleman:
+    build: .
+    command: bundle exec middleman server
+    volumes:
+      - ./:/var/www
+    ports:
+      - "4567:4567"
