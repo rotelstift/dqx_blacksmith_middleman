@@ -60,7 +60,7 @@ window.onload = function () {
 	$(function() {
     $( "#slider" ).slider({
 			min: 50,
-			max: 2000,
+			max: 2150,
 			step: 50,
 			value: 1000,
 			slide: function(e, ui) {
