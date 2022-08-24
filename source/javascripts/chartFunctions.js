@@ -12,16 +12,18 @@ function renderChart(chartName, chartContainerID, itemDataAry) {
       interval: 30,
       viewportMaximum: itemDataAry[1] + 30,
       stripLines: [
-        { //チャレンジゾーン
-          startValue: itemDataAry[0] - damageRange[3][1],
-          endValue: itemDataAry[1] - damageRange[3][0],
-          opacity: .4
+        { //ねらい打ちしてもいい範囲
+          startValue: itemDataAry[0] - damageRange[3][1] * 2,
+          endValue: itemDataAry[1] - damageRange[3][0] * 2,
+          opacity: .4,
+          color: "red"
         },
-        { //絶対大丈夫だよゾーン
-          startValue: itemDataAry[0] - damageRange[3][0], //120 - 8 = 112
-          endValue: itemDataAry[1] - damageRange[3][1], //124-18 = 106
-          //opacity: .8 // x ? y : z
-          opacity: (itemDataAry[0] - damageRange[3][0] > itemDataAry[1] - damageRange[3][1]) ? .0 : .8
+        { //上下狙いで出る範囲
+          startValue: itemDataAry[0] - damageRange[4][1] * 2, //120 - 8 = 112
+          endValue: itemDataAry[1] - damageRange[4][0] * 2, //124-18 = 106
+          opacity: .4, // x ? y : z
+          //opacity: (itemDataAry[0] - damageRange[3][0] > itemDataAry[1] - damageRange[3][1]) ? .0 : .8
+          color: "blue"
         },
         { //成功ゾーン
           startValue: itemDataAry[0],
@@ -77,17 +79,12 @@ function refreshChart(chartName, damageID, itemDataAry){
   for(var i = 2; i <= 8; i++){
     chartName.options.data[0].dataPoints[i].y = [damageRange[i - 1][0] + damage, damageRange[i - 1][1] + damage];
   }
-  chartName.options.axisY.stripLines[0].startValue = itemDataAry[0] - damageRange[3][1];
-  chartName.options.axisY.stripLines[0].endValue = itemDataAry[1] - damageRange[3][0];
+  chartName.options.axisY.stripLines[0].startValue = itemDataAry[0] - damageRange[3][1] * 2;
+  chartName.options.axisY.stripLines[0].endValue = itemDataAry[1] - damageRange[3][0] * 2;
 
-  if (itemDataAry[0] - damageRange[3][0] < itemDataAry[1] - damageRange[3][1]){
-    chartName.options.axisY.stripLines[1].startValue = itemDataAry[0] - damageRange[3][0];
-    chartName.options.axisY.stripLines[1].endValue = itemDataAry[1] - damageRange[3][1];
-    chartName.options.axisY.stripLines[1].opacity = .8;
-  } else {
-    chartName.options.axisY.stripLines[1].opacity = .0;
-  }
-
+  chartName.options.axisY.stripLines[1].startValue = itemDataAry[0] - damageRange[4][1] * 2;
+  chartName.options.axisY.stripLines[1].endValue = itemDataAry[1] - damageRange[4][0] * 2;
+  chartName.options.axisY.stripLines[1].opacity = .4;
 
   chartName.render();
 }
