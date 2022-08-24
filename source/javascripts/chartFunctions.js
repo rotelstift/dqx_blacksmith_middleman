@@ -15,12 +15,18 @@ function renderChart(chartName, chartContainerID, itemDataAry) {
         { //ねらい打ちしてもいい範囲
           startValue: fakeCritical(itemDataAry[1], damageRange[3][0]),
           endValue: overDamage(itemDataAry[1], damageRange[3][1]),
+          label: fakeCritical(itemDataAry[1], damageRange[3][0]) + " 〜 " + overDamage(itemDataAry[1], damageRange[3][1]),
+          labelBackgroundColor: "rgba(255, 255, 255, 0.3)",
+          labelAlign: "center",
           opacity: .4,
           color: "red"
         },
         { //上下狙いで出る範囲
           startValue: fakeCritical(itemDataAry[1], damageRange[4][0]),
           endValue: overDamage(itemDataAry[1], damageRange[4][1]),
+          label: fakeCritical(itemDataAry[1], damageRange[4][0]) + " 〜 " + overDamage(itemDataAry[1], damageRange[4][1]),
+          labelBackgroundColor: "rgba(255, 255, 255, 0.3)",
+          labelAlign: "center",
           opacity: .4, // x ? y : z
           //opacity: (itemDataAry[0] - damageRange[3][0] > itemDataAry[1] - damageRange[3][1]) ? .0 : .8
           color: "blue"
@@ -81,9 +87,14 @@ function refreshChart(chartName, damageID, itemDataAry){
   }
   chartName.options.axisY.stripLines[0].startValue = fakeCritical(itemDataAry[1], damageRange[3][0]);
   chartName.options.axisY.stripLines[0].endValue = overDamage(itemDataAry[1], damageRange[3][1]);
+  chartName.options.axisY.stripLines[0].label = fakeCritical(itemDataAry[1], damageRange[3][0]) + " 〜 " + overDamage(itemDataAry[1], damageRange[3][1]);
+  chartName.options.axisY.stripLines[0].labelAlign = "center";
 
   chartName.options.axisY.stripLines[1].startValue = fakeCritical(itemDataAry[1], damageRange[4][0]);
   chartName.options.axisY.stripLines[1].endValue = overDamage(itemDataAry[1], damageRange[4][1]);
+  chartName.options.axisY.stripLines[1].label = fakeCritical(itemDataAry[1], damageRange[4][0]) + " 〜 " + overDamage(itemDataAry[1], damageRange[4][1]);
+  chartName.options.axisY.stripLines[1].labelAlign = "center";
+
   chartName.options.axisY.stripLines[1].opacity = .4;
 
   chartName.render();
